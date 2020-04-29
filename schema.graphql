@@ -1,0 +1,21 @@
+type Query {
+    getFiles: [File]
+    getChildren(id: ID!): [File]
+    getPath: ID
+    getName(id: ID): String
+}
+
+type Mutation {
+    addPath(id: ID): ID
+    changeName(id: ID, newName: String): [File]
+    deleteFile(id: ID): [File]
+    addFile(id: ID, name: String): [File]
+    dragFile(id: ID, idTo: ID): [File]
+}
+
+type File {
+    id: ID!
+    name: String
+    type: String
+    children: [File]
+}
