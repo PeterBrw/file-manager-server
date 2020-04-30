@@ -36,6 +36,17 @@ const Mutation = {
         fs.writeFileSync("./data/path.json", JSON.stringify(path));
         return id;
     },
+    backPath: (parent, { id }) => {
+        const path = JSON.parse(fs.readFileSync("./data/path.json"));
+        console.log(path);
+        const newPath = path.slice(
+            0,
+            path.findIndex((item) => item.id === id) + 1
+        );
+        fs.writeFileSync("./data/path.json", JSON.stringify(newPath));
+        console.log(newPath);
+        return newPath[newPath.length - 1].id;
+    },
     changeName: (parent, { id, newName }) => {
         const data = JSON.parse(fs.readFileSync("./data/data.json"));
         const changeData = changeName(data, id, newName);
